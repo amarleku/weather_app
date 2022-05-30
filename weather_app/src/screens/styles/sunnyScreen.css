@@ -1,0 +1,67 @@
+.background {
+    background-color: #42C2FF;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.weatherLogo {
+    display: flex;
+    justify-content: end;
+    margin-right: 130px;
+    margin-top: 37px;
+}
+
+.card {
+    background: linear-gradient(252.44deg, rgba(239, 255, 253, 0.7) 0.56%, rgba(239, 255, 253, 0) 100.56%) !important;
+    backdrop-filter: blur(40px) !important;
+    border-radius: 30px !important;
+    height: 100% !important;
+    position: absolute !important;
+    top: 25% !important;
+    width: 65%;
+    height: 50% !important;
+}
+
+.otherStats {
+    padding-top: 70px;
+    color: #F2FBFF;
+    width: 30%;
+    padding-left: 60px;
+}
+
+.stats {
+    padding-top: 100px;
+    color: #F2FBFF;
+    width: 30%;
+    padding-left: 60px;
+}
+
+.form-control {
+    background: linear-gradient(269.42deg, #F2FBFF -1.71%, rgba(242, 251, 255, 0.3) 100%);
+    opacity: 0.5;
+    border-radius: 30px !important; 
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    left: 25% !important;
+    width: 50% !important;
+    position: absolute !important;
+
+}
+
+.searchInput {
+    background-image: url('../../assets/icons8-search.svg');
+    background-position: 97% 50%;
+    background-repeat: no-repeat;
+}
+
+.inputWrapper {
+    width: 50%;
+}
+
+/* .searchBar {
+    width: 50%;
+    border-radius: 40px;
+} */
