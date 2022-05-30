@@ -10,8 +10,6 @@
 .weatherLogo {
     display: flex;
     justify-content: end;
-    margin-right: 130px;
-    margin-top: 37px;
 }
 
 .card {
@@ -19,24 +17,26 @@
     backdrop-filter: blur(40px) !important;
     border-radius: 30px !important;
     height: 100% !important;
-    position: absolute !important;
-    top: 25% !important;
-    width: 65%;
-    height: 50% !important;
+    width: 73% !important;
+    height: auto !important;
+    border: none !important;
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    top: 16rem !important;
+    position: fixed !important;
+    display: flex !important;
+    justify-content: center !important;
 }
 
 .otherStats {
-    padding-top: 70px;
     color: #F2FBFF;
-    width: 30%;
     padding-left: 60px;
 }
 
 .stats {
-    padding-top: 100px;
-    color: #F2FBFF;
-    width: 30%;
-    padding-left: 60px;
+     color: #F2FBFF;
+     padding-left: 60px;
 }
 
 .form-control {
@@ -48,7 +48,9 @@
     left: 25% !important;
     width: 50% !important;
     position: absolute !important;
-
+    outline: none !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
 }
 
 .searchInput {
@@ -60,8 +62,11 @@
 .inputWrapper {
     width: 50%;
 }
+.infoWrapper{
+    padding-top: 100px;
+}
 
-/* .searchBar {
-    width: 50%;
-    border-radius: 40px;
-} */
+.custom-card{
+   display: flex !important;
+   justify-content: center !important;
+}
