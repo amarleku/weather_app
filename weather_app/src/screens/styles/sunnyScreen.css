@@ -23,7 +23,7 @@
     display: block !important;
     margin-left: auto !important;
     margin-right: auto !important;
-    top: 16rem !important;
+    top: 14rem !important;
     position: fixed !important;
     display: flex !important;
     justify-content: center !important;
@@ -69,4 +69,25 @@
 .custom-card{
    display: flex !important;
    justify-content: center !important;
+}
+
+@media screen and (max-width: 500px) {
+    .sunImg {
+        margin-top: 130px;
+        width: 200px;
+        height: 200px;
+    }
+    
+    .card {
+        position: absolute !important;
+        top: 15rem !important;
+        left: 2rem !important;        
+        width: 80% !important;
+    }
+
+    .searchInput {
+        width: 70% !important;
+        left: 4rem !important;
+        position: absolute !important
+    }
 }
