@@ -46,8 +46,10 @@ const SunnyScreen:React.FC = () => {
         const options = {
             method: 'GET',
             url: 'https://community-open-weather-map.p.rapidapi.com/weather',
+            // findWeatherData: 'https://community-open-weather-map.p.rapidapi.com/forecast/find',
             params: {
               q: 'tirana,al',
+            //cnt: '0',
               lat: '41.3309822',
               lon: '19.8178232',
               callback: 'test',
