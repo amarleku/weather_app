@@ -36,13 +36,37 @@ const SunnyScreen:React.FC = () => {
         errorMsg: ''
     });
 
-    const onLoadGetRequestUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Tirana?unitGroup=metric&include=days&key=T8F4NJ3HKJVN9BQNVJLVMSGJE&contentType=json`;
+    const onLoadGetRequestUrl = `https://community-open-weather-map.p.rapidapi.com/forecast/daily`;
 
 
     useEffect(() => {
-        axios.get(onLoadGetRequestUrl).then((res) => {
-            setInitialData(res.data);
-        });
+        // axios.get(onLoadGetRequestUrl).then((res) => {
+        //     setInitialData(res.data);
+        // });
+        const options = {
+            method: 'GET',
+            url: 'https://community-open-weather-map.p.rapidapi.com/weather',
+            params: {
+              q: 'tirana,al',
+              lat: '41.3309822',
+              lon: '19.8178232',
+              callback: 'test',
+              id: '2172797',
+              lang: 'null',
+              units: 'metric',
+              mode: 'json'
+            },
+            headers: {
+              'X-RapidAPI-Host': 'community-open-weather-map.p.rapidapi.com',
+              'X-RapidAPI-Key': 'ad8bc4b195mshd0bce1ac925d592p114a30jsndf22a1150030'
+            }
+          };
+          
+          axios.request(options).then(function (response) {
+              console.log(response.data);
+          }).catch(function (error) {
+              console.error(error);
+          });
     })
 
     const[location, setLocation] = useState<string>('');
@@ -63,7 +87,7 @@ const SunnyScreen:React.FC = () => {
                             description: '',
                             humidity: '',
                             windSpeed: ''
-                        }
+                        }   
                     ],
                     errorMsg: ''
                 })
