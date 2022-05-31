@@ -7,11 +7,12 @@ import Search from "../components/SearchBar/Search";
 
 import {ResponseData} from "../components/SearchBar/constants";
 import axios from "axios";
+import BackgroundComponent from "../components/SearchBar/BackgroundComponent";
 
 const SunnyScreen:React.FC = () => {
 
     const [initialData, setInitialData] = useState<ResponseData>({
-        resolvedAddress: '',
+        name: '',
         days: [
             {
                 temp: '',
@@ -24,7 +25,7 @@ const SunnyScreen:React.FC = () => {
     });
 
     const[data,setData] = useState<ResponseData>({
-        resolvedAddress: '',
+        name: '',
         days: [
             {
                 temp: '',
@@ -39,38 +40,6 @@ const SunnyScreen:React.FC = () => {
     const onLoadGetRequestUrl = `https://community-open-weather-map.p.rapidapi.com/forecast/daily`;
 
 
-    useEffect(() => {
-        // axios.get(onLoadGetRequestUrl).then((res) => {
-        //     setInitialData(res.data);
-        // });
-        const options = {
-            method: 'GET',
-            url: 'https://community-open-weather-map.p.rapidapi.com/weather',
-            // findWeatherData: 'https://community-open-weather-map.p.rapidapi.com/forecast/find',
-            params: {
-              q: 'tirana,al',
-            //cnt: '0',
-              lat: '41.3309822',
-              lon: '19.8178232',
-              callback: 'test',
-              id: '2172797',
-              lang: 'null',
-              units: 'metric',
-              mode: 'json'
-            },
-            headers: {
-              'X-RapidAPI-Host': 'community-open-weather-map.p.rapidapi.com',
-              'X-RapidAPI-Key': 'ad8bc4b195mshd0bce1ac925d592p114a30jsndf22a1150030'
-            }
-          };
-          
-          axios.request(options).then(function (response) {
-              console.log(response.data);
-          }).catch(function (error) {
-              console.error(error);
-          });
-    })
-
     const[location, setLocation] = useState<string>('');
 
     const[errorMsg, setErrorMsg] = useState<string>('');
@@ -82,14 +51,14 @@ const SunnyScreen:React.FC = () => {
             axios.get(url).then((response: any) => {
                 setData(response.data);
                 setInitialData({
-                    resolvedAddress: '',
+                    name: '',
                     days: [
                         {
                             temp: '',
                             description: '',
                             humidity: '',
                             windSpeed: ''
-                        }   
+                        }
                     ],
                     errorMsg: ''
                 })
@@ -103,10 +72,8 @@ const SunnyScreen:React.FC = () => {
     }
 
     return(
-        <div className="background">
-            <div className="weatherLogo">
-                <img src={sunny} alt="sunnyLogo" className="sunImg" />
-            </div>
+        <>
+        <BackgroundComponent />
           <div className="container">
             <div className="card custom-card">
                 <div className="card-body">
@@ -115,51 +82,66 @@ const SunnyScreen:React.FC = () => {
                         <Search searchLocation={(event) => searchLocation(event)}
                                 handleInputChange={(event) => setLocation(event.target.value)}/>
                     </div>
-                    {initialData ? <div className="infoWrapper">
-                        <div className="stats">
-                            <h2>{ initialData.resolvedAddress }</h2>
-                            <h3>{ initialData.days[0].temp }</h3>
-                            <h3>{ initialData.days[0].description }</h3>
+                    {/* Mock Weather Info of how forcast can be */}
+                    <div className="infoWrapper">
+                        <div>
+                            <div className="stats">
+                                <h2>Tirana, Albania</h2>
+                                <h3>13°C</h3>
+                                <h3>Sunny</h3>
+                            </div>
+                            <div className="otherStats pt-5 pb-3">
+                                <h3>Humidity: 40%</h3>
+                                <h3>Wind Speed: 10km/h</h3>
+                            </div>
                         </div>
-                        <div className="otherStats pt-5 pb-3">
-                            <h3>{ initialData.days[0].humidity }</h3>
-                            <h3>Wind Speed: { initialData.days[0].windSpeed }</h3>
+                        <div>
+                            <div className="stats">
+                                <h2>Tirana, Albania</h2>
+                                <h3>13°C</h3>
+                                <h3>Sunny</h3>
+                            </div>
+                            <div className="otherStats pt-5 pb-3">
+                                <h3>Humidity: 40%</h3>
+                                <h3>Wind Speed: 10km/h</h3>
+                            </div>
+                            <div className="pt-2">
+                                <h3>{errorMsg}</h3>
+                            </div>
                         </div>
-                        <div className="pt-2">
-                            <h3>{errorMsg}</h3>
+                        <div>
+                            <div className="stats">
+                                <h2>Tirana, Albania</h2>
+                                <h3>13°C</h3>
+                                <h3>Sunny</h3>
+                            </div>
+                            <div className="otherStats pt-5 pb-3">
+                                <h3>Humidity: 40%</h3>
+                                <h3>Wind Speed: 10km/h</h3>
+                            </div>
+                            <div className="pt-2">
+                                <h3>{errorMsg}</h3>
+                            </div>
                         </div>
-                    </div> : <div className="infoWrapper">
-                        <div className="stats">
-                            <h2>{ data.resolvedAddress }</h2>
-                            <h3>{ data.days[0].temp }</h3>
-                            <h3>{ data.days[0].description }</h3>
+                        <div>
+                            <div className="stats">
+                                <h2>Tirana, Albania</h2>
+                                <h3>13°C</h3>
+                                <h3>Sunny</h3>
+                            </div>
+                            <div className="otherStats pt-5 pb-3">
+                                <h3>Humidity: 40%</h3>
+                                <h3>Wind Speed: 10km/h</h3>
+                            </div>
+                            <div className="pt-2">
+                                <h3>{errorMsg}</h3>
+                            </div>
                         </div>
-                        <div className="otherStats pt-5 pb-3">
-                            <h3>{ data.days[0].humidity }</h3>
-                            <h3>Wind Speed: { data.days[0].windSpeed }</h3>
-                        </div>
-                        <div className="pt-2">
-                            <h3>{errorMsg}</h3>
-                        </div>
-                    </div>}
-                    {/*<div className="infoWrapper">
-                        <div className="stats">
-                            <h2>{ data.resolvedAddress }</h2>
-                            <h3>{ data.days[0].temp }</h3>
-                            <h3>{ data.days[0].description }</h3>
-                        </div>
-                        <div className="otherStats pt-5 pb-3">
-                            <h3>{ data.days[0].humidity }</h3>
-                            <h3>Wind Speed: { data.days[0].windSpeed }</h3>
-                        </div>
-                        <div className="pt-2">
-                            <h3>{errorMsg}</h3>
-                        </div>
-                    </div>*/}
+                    </div>
                 </div>
             </div>
           </div>
-        </div>
+        </>
     );
 }
 

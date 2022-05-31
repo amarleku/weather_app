@@ -1,7 +1,7 @@
 import React from "react";
 
 export interface ResponseData {
-    resolvedAddress: string;
+    name: string;
     days: [{
         temp: string,
         description: string,
