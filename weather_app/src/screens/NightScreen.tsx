@@ -9,10 +9,11 @@ import BackgroundComponent from "../components/SearchBar/BackgroundComponent";
 
 const NightScreen: React.FC = () => {
 
-    const [initialData, setInitialData] = useState<ResponseData>({
-        name: '',
+    const [data, setData] = useState<ResponseData>({
+        address: '',
         days: [
             {
+                datetime: '',
                 temp: '',
                 description: '',
                 humidity: '',
@@ -22,18 +23,6 @@ const NightScreen: React.FC = () => {
         errorMsg: ''
     });
 
-    const [data, setData] = useState<ResponseData>({
-        name: '',
-        days: [
-            {
-                temp: '',
-                description: '',
-                humidity: '',
-                windSpeed: ''
-            }
-        ],
-        errorMsg: ''
-    });
     const onLoadGetRequestUrl = `https://community-open-weather-map.p.rapidapi.com/forecast/daily`;
     const [location, setLocation] = useState<string>('');
     const [errorMsg, setErrorMsg] = useState<string>('');
@@ -42,18 +31,6 @@ const NightScreen: React.FC = () => {
         if (event.key === ("Enter")) {
             axios.get(url).then((response: any) => {
                 setData(response.data);
-                setInitialData({
-                    name: '',
-                    days: [
-                        {
-                            temp: '',
-                            description: '',
-                            humidity: '',
-                            windSpeed: ''
-                        }
-                    ],
-                    errorMsg: ''
-                })
             }).catch((error: any) => {
                 setErrorMsg(error.message);
             });

@@ -5,13 +5,14 @@ import { ResponseData } from "../components/SearchBar/constants";
 import axios from "axios";
 import './styles/snowScreen.css';
 import BackgroundComponent from "../components/SearchBar/BackgroundComponent";
- 
+
 const SnowScreen: React.FC = () => {
 
     const [initialData, setInitialData] = useState<ResponseData>({
-        name: '',
+        address: '',
         days: [
             {
+                datetime: '',
                 temp: '',
                 description: '',
                 humidity: '',
@@ -21,9 +22,10 @@ const SnowScreen: React.FC = () => {
         errorMsg: ''
     });
     const [data, setData] = useState<ResponseData>({
-        name: '',
+        address: '',
         days: [
             {
+                datetime: '',
                 temp: '',
                 description: '',
                 humidity: '',
@@ -40,18 +42,6 @@ const SnowScreen: React.FC = () => {
         if (event.key === ("Enter")) {
             axios.get(url).then((response: any) => {
                 setData(response.data);
-                setInitialData({
-                    name: '',
-                    days: [
-                        {
-                            temp: '',
-                            description: '',
-                            humidity: '',
-                            windSpeed: ''
-                        }
-                    ],
-                    errorMsg: ''
-                })
             }).catch((error: any) => {
                 setErrorMsg(error.message);
             });

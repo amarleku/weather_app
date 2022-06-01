@@ -6,8 +6,8 @@ import SunnyScreen from './screens/SunnyScreen';
 function App() {
   return (
     <div className="App">
-      {/* <SunnyScreen />*/}
-      <NightScreen /> 
+      <SunnyScreen />
+      {/*<NightScreen /> */}
     </div>
   );
 }
