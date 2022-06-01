@@ -1,0 +1,26 @@
+.background {
+    background-color: #42C2FF;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.weatherLogo {
+    display: flex;
+    justify-content: end;
+}
+
+@media screen and (max-width: 500px) {
+    .sunSVG {
+        margin-top: 120px;
+        width: 200px;
+        height: 200px;
+        position: fixed;
+    }
+
+    .background {
+        position: fixed;
+    }
+}
