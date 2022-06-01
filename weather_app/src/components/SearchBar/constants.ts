@@ -8,7 +8,8 @@ export interface ResponseData {
         tempmax: string,
         description: string,
         humidity: string,
-        windspeed: string
+        windspeed: string,
+        feelslikemax: string,
     }]
     errorMsg: string
 }

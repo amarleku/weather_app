@@ -18,7 +18,8 @@ const NightScreen: React.FC = () => {
                 tempmax: '',
                 description: '',
                 humidity: '',
-                windspeed: ''
+                windspeed: '',
+                feelslikemax: ''
             }
         ],
         errorMsg: ''

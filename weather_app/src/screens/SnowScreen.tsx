@@ -17,7 +17,8 @@ const SnowScreen: React.FC = () => {
                 tempmax: '',
                 description: '',
                 humidity: '',
-                windspeed: ''
+                windspeed: '',
+                feelslikemax: ''
             }
         ],
         errorMsg: ''
@@ -31,7 +32,8 @@ const SnowScreen: React.FC = () => {
                 tempmax: '',
                 description: '',
                 humidity: '',
-                windspeed: ''
+                windspeed: '',
+                feelslikemax: ''
             }
         ],
         errorMsg: ''
