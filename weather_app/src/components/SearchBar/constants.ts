@@ -1,8 +1,9 @@
 import React from "react";
 
 export interface ResponseData {
-    name: string;
+    address: string;
     days: [{
+        datetime: string,
         temp: string,
         description: string,
         humidity: string,
