@@ -1,100 +1,108 @@
 .background {
-    background-color: #712B75;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  background-color: #712b75;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .weatherLogo {
-    display: flex;
-    justify-content: end;
+  display: flex;
+  justify-content: end;
 }
 
 .custom-card {
-    background: linear-gradient(252.44deg, rgba(239, 255, 253, 0.7) 0.56%, rgba(239, 255, 253, 0) 100.56%) !important;
-    backdrop-filter: blur(40px) !important;
-    border-radius: 30px !important;
-    height: 100% !important;
-    width: 73% !important;
-    height: auto !important;
-    border: none !important;
-    display: block !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    top: 14rem !important;
-    position: fixed !important;
-    display: flex !important;
-    justify-content: center !important;
+  background: linear-gradient(
+    252.44deg,
+    rgba(239, 255, 253, 0.7) 0.56%,
+    rgba(239, 255, 253, 0) 100.56%
+  ) !important;
+  backdrop-filter: blur(40px) !important;
+  border-radius: 30px !important;
+  height: 100% !important;
+  width: 73% !important;
+  height: auto !important;
+  border: none !important;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  top: 14rem !important;
+  position: fixed !important;
+  display: flex !important;
+  justify-content: center !important;
 }
 
 .otherStats {
-    color: #F2FBFF;
-    padding-left: 60px;
+  color: #f2fbff;
+  padding-left: 60px;
 }
 
 .stats {
-     color: #F2FBFF;
-     padding-left: 60px;
+  color: #f2fbff;
+  padding-left: 60px;
 }
 
 .form-control {
-    background: linear-gradient(269.42deg, #F2FBFF -1.71%, rgba(242, 251, 255, 0.3) 100%);
-    opacity: 0.5;
-    border-radius: 30px !important; 
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
-    left: 25% !important;
-    width: 50% !important;
-    position: absolute !important;
-    outline: none !important;
-    -webkit-appearance:none;
-    box-shadow: none !important;
+  background: linear-gradient(
+    269.42deg,
+    #f2fbff -1.71%,
+    rgba(242, 251, 255, 0.3) 100%
+  );
+  opacity: 0.5;
+  border-radius: 30px !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  left: 25% !important;
+  width: 50% !important;
+  position: absolute !important;
+  outline: none !important;
+  -webkit-appearance: none;
+  box-shadow: none !important;
 }
 
 .searchInput {
-    background-image: url('../../assets/icons8-search.svg');
-    background-position: 97% 50%;
-    background-repeat: no-repeat;
+  background-image: url("../../assets/icons8-search.svg");
+  background-position: 97% 50%;
+  background-repeat: no-repeat;
 }
 
 .inputWrapper {
-    width: 50%;
+  width: 50%;
 }
-.infoWrapper{
-    display: flex;
-    justify-content: space-around;
-    padding-top: 100px;
+.infoWrapper {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 100px;
 }
 
-.custom-card{
-   display: flex !important;
-   justify-content: center !important;
+.custom-card {
+  display: flex !important;
+  justify-content: center !important;
 }
 
 @media screen and (max-width: 500px) {
-    .sunImg {
-        margin-top: 130px;
-        width: 200px;
-        height: 200px;
-    }
-    
-    .card {
-        position: absolute !important;
-        top: 15rem !important;
-        left: 2rem !important;        
-        width: 80% !important;
-    }
+  .sunImg {
+    margin-top: 130px;
+    width: 200px;
+    height: 200px;
+  }
 
-    .searchInput {
-        width: 70% !important;
-        left: 4rem !important;
-        position: absolute !important
-    }
+  .card {
+    position: absolute !important;
+    top: 15rem !important;
+    left: 2rem !important;
+    width: 80% !important;
+  }
 
-    .infoWrapper{
-        display: flex;
-        flex-direction: column;
-    }
+  .searchInput {
+    width: 70% !important;
+    left: 4rem !important;
+    position: absolute !important;
+  }
+
+  .infoWrapper {
+    display: flex;
+    flex-direction: column;
+  }
 }
