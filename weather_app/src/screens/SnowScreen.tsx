@@ -14,9 +14,10 @@ const SnowScreen: React.FC = () => {
             {
                 datetime: '',
                 temp: '',
+                tempmax: '',
                 description: '',
                 humidity: '',
-                windSpeed: ''
+                windspeed: ''
             }
         ],
         errorMsg: ''
@@ -27,9 +28,10 @@ const SnowScreen: React.FC = () => {
             {
                 datetime: '',
                 temp: '',
+                tempmax: '',
                 description: '',
                 humidity: '',
-                windSpeed: ''
+                windspeed: ''
             }
         ],
         errorMsg: ''

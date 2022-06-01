@@ -5,9 +5,10 @@ export interface ResponseData {
     days: [{
         datetime: string,
         temp: string,
+        tempmax: string,
         description: string,
         humidity: string,
-        windSpeed: string
+        windspeed: string
     }]
     errorMsg: string
 }

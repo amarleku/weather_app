@@ -29,9 +29,10 @@ const SunnyScreen:React.FC = () => {
             {
                 datetime: '',
                 temp: '',
+                tempmax: '',
                 description: '',
                 humidity: '',
-                windSpeed: ''
+                windspeed: ''
             }
         ],
         errorMsg: ''
@@ -65,12 +66,12 @@ const SunnyScreen:React.FC = () => {
                         <div className="infoWrapper">
                             {errorMsg == '' ? data.days.slice(0, 5).map((item, index) => (
                                 <div className="stats" key={index}>
-                                    <h2 className="date-header">{ item.datetime }</h2>
-                                    <h3 className="pt-4">{ data.address }</h3>
-                                    <h3> { item.temp }°C</h3>
-                                    <h3> { item.description } </h3>
-                                    <h3 className="pt-4">Humidity: { item.humidity }%</h3>
-                                    <h3>Wind Speed: { item.windSpeed }</h3>
+                                    <h3 className="date-header">{ item.datetime }</h3>
+                                    <h4 className="pt-4">{ data.address }</h4>
+                                    <h4> <b>{ item.tempmax }°C</b></h4>
+                                    <h5> { item.description } </h5>
+                                    <h5 className="pt-4">Humidity: { item.humidity }%</h5>
+                                    <h5>Wind Speed: { item.windspeed }</h5>
                                 </div>
                             )): <div><h2>{ errorMsg }</h2></div>}
                         </div>
