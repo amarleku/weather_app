@@ -9,8 +9,8 @@ import { Sun } from './styles/images';
 function App() {
   return (
     <div className="App">
-      {/* <SunnyScreen />*/}
-      <SunnyScreen></SunnyScreen>
+      <SunnyScreen />
+      {/*<NightScreen /> */}
     </div>
   );
 }
