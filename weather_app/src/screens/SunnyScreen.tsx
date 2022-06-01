@@ -97,13 +97,13 @@ const SunnyScreen:React.FC = () => {
                         </div>
                         <div>
                             <div className="stats">
-                                <h2>Tirana, Albania</h2>
+                                <h2>Klina, Kosovo</h2>
                                 <h3>13°C</h3>
                                 <h3>Sunny</h3>
                             </div>
                             <div className="otherStats pt-5 pb-3">
                                 <h3>Humidity: 40%</h3>
-                                <h3>Wind Speed: 10km/h</h3>
+                                <h3>Wind Speed: 100km/h</h3>
                             </div>
                             <div className="pt-2">
                                 <h3>{errorMsg}</h3>
