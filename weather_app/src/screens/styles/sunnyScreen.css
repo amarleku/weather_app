@@ -39,6 +39,14 @@
      padding-left: 60px;
 }
 
+.date-header {
+    font-weight: bold;
+}
+
+.errorMsg {
+    color: #F2FBFF;
+}
+
 .form-control {
     background: linear-gradient(269.42deg, #F2FBFF -1.71%, rgba(242, 251, 255, 0.3) 100%);
     opacity: 0.5;
