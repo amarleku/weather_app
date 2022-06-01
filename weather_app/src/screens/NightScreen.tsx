@@ -13,6 +13,7 @@ const NightScreen: React.FC = () => {
         address: '',
         days: [
             {
+                conditions: '',
                 datetime: '',
                 temp: '',
                 description: '',
@@ -23,10 +24,12 @@ const NightScreen: React.FC = () => {
         errorMsg: ''
     });
 
-    const onLoadGetRequestUrl = `https://community-open-weather-map.p.rapidapi.com/forecast/daily`;
     const [location, setLocation] = useState<string>('');
+    
     const [errorMsg, setErrorMsg] = useState<string>('');
+    
     const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&include=days&key=T8F4NJ3HKJVN9BQNVJLVMSGJE&contentType=json`;
+    
     const searchLocation = (event: { key: string; }) => {
         if (event.key === ("Enter")) {
             axios.get(url).then((response: any) => {
@@ -39,7 +42,7 @@ const NightScreen: React.FC = () => {
     }
     return (
         <>
-            <BackgroundComponent />
+            <BackgroundComponent conditions="" hour={12}/>
             <div className="container">
                 <div className="card custom-card">
                     <div className="card-body">

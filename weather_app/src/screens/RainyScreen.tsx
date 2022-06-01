@@ -27,6 +27,7 @@ const RainyScreen:React.FC = () => {
         address: '',
         days: [
             {
+                conditions: '',
                 datetime: '',
                 temp: '',
                 description: '',
@@ -54,7 +55,7 @@ const RainyScreen:React.FC = () => {
 
     return(
         <>
-            <BackgroundComponent />
+            <BackgroundComponent conditions={''} hour={12}/>
             <div className="container">
                 <div className="card custom-card">
                     <div className="card-body">

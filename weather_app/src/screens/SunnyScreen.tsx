@@ -26,7 +26,8 @@ const SunnyScreen:React.FC = () => {
     const[data,setData] = useState<ResponseData>({
         address: '',
         days: [
-            {
+            {   
+                conditions: '',
                 datetime: '',
                 temp: '',
                 description: '',
@@ -40,10 +41,12 @@ const SunnyScreen:React.FC = () => {
 
     const[errorMsg, setErrorMsg] = useState<string>('');
 
+    const currentHour = new Date().getHours();
 
     const searchLocation = (event: { key: string; }) => {
         if(event.key===("Enter")) {
             axios.get(url).then((response: any) => {
+                console.log(response.data);
                 setData(response.data);
                 setErrorMsg('');
             }).catch((error) => {
@@ -54,7 +57,7 @@ const SunnyScreen:React.FC = () => {
 
     return(
         <>
-            <BackgroundComponent />
+            <BackgroundComponent conditions={data.days[0].conditions} hour={currentHour}/>
             <div className="container">
                 <div className="card custom-card">
                     <div className="card-body">
@@ -63,7 +66,7 @@ const SunnyScreen:React.FC = () => {
                                     handleInputChange={(event) => setLocation(event.target.value)}/>
                         </div>
                         <div className="infoWrapper">
-                            {errorMsg == '' ? data.days.slice(0, 5).map((item, index) => (
+                            {errorMsg === '' ? data.days.slice(0, 5).map((item, index) => (
                                 <div className="stats" key={index}>
                                     <h2 className="date-header">{ item.datetime }</h2>
                                     <h3 className="pt-4">{ data.address }</h3>
