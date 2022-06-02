@@ -54,7 +54,12 @@ const SunnyScreen: React.FC = () => {
                 setData(response.data);
                 setErrorMsg('');
             }).catch((error) => {
-                setErrorMsg(error.response.data);
+                if(location === '') {
+                    setErrorMsg("Please enter a location on the search bar!");
+                }else {
+                    setErrorMsg(error.response.data);
+                }
+                console.log(error);
             });
         }
     }
