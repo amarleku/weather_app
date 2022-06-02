@@ -13,9 +13,8 @@ function App() {
     <div className="App">
       {/**/}<SunnyScreen />
       {/*<NightScreen /> */}
-      {/*Test Push*/}<div>
-      <Footer />
-    </div></div>
+      {/*Test Push*/}
+      </div>
   );
 }
 
