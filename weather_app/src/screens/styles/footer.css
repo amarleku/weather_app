@@ -6,6 +6,7 @@
   );
   padding: 10px;
   width: 100%;
+  
   position: absolute;
   bottom: 0;
   backdrop-filter: blur(40px);
