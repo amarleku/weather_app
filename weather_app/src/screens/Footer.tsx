@@ -1,22 +1,16 @@
-import React from 'react'
-import './styles/footer.css'
-import { faFacebookF, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons' 
+import React from 'react'; import './styles/footer.css'
+import { faFacebookF, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core';
 library.add(faFacebookF); 
-
-
-interface Props { }
-
 const Footer: React.FC = () => {
 
   let date = new Date();
+
   return (
     <>
       <footer className="footer">
-      <div className="container p-4 pb-0">
-          <p style={{ color: '#fff',fontWeight: '700', fontSize:'21px' }}>Connect with us</p>
-          <section className="mb-4">
+      <section className="mb-4">
             <a
               className="btn btn-primary btn-floating m-1"
               href="#!"
@@ -30,7 +24,7 @@ const Footer: React.FC = () => {
             </a>
 
             <a
-              className="btn btn btn-floating m-1"
+              className="btn btn-dark btn-floating m-1"
               href="#!"
               role="button"
               style={{
@@ -49,12 +43,10 @@ const Footer: React.FC = () => {
             
             ><FontAwesomeIcon icon={faTwitter} /></a>
           </section>
-           
-        </div>
-      <p className='text-center footer-text'>Copyright Weather 2022</p>
+        <p className='text-center footer-text'>Copyright Weather {`${date.getFullYear()}`}</p>
       </footer>
-      
-      </>)
-
+    </>)
 }
+
+
 export default Footer

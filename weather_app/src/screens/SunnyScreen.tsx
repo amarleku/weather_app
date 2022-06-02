@@ -61,7 +61,7 @@ const SunnyScreen: React.FC = () => {
 
     return (
         <>
-            <BackgroundComponent conditions={data.days[0].conditions} hour={currentTime}/>
+            <BackgroundComponent conditions={data.days[0].conditions} hour={currentTime} />
             <div className="container">
                 <div className="card custom-card">
                     <div className="card-body">
@@ -83,9 +83,9 @@ const SunnyScreen: React.FC = () => {
                             )) : <div><h2>{errorMsg}</h2></div>}
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
-            
+
         </>
     );
 }
