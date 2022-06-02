@@ -16,7 +16,7 @@ const Footer = () => {
         left: '0',
         width: '100%',
         height: '10px'
-      }} className="text-center text-lg-start">
+      }} className="d-flex-column text-center text-lg-start">
         <div className="container p-4 pb-0">
           <section className="mb-4">
             <a
