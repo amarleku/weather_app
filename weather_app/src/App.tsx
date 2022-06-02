@@ -5,15 +5,17 @@ import SunnyScreen from './screens/SunnyScreen';
 import {  Route, Routes  } from "react-router-dom";
 import Favorites from './screens/Favorites';
 import { Sun } from './styles/images';
+import Footer from './screens/Footer';
 
 function App() {
   return (
+    
     <div className="App">
-      <SunnyScreen />
+      {/**/}<SunnyScreen />
       {/*<NightScreen /> */}
-
-      {/*Test Push*/}
-    </div>
+      {/*Test Push*/}<div>
+      <Footer />
+    </div></div>
   );
 }
 

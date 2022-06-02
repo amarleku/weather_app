@@ -8,6 +8,7 @@ import Search from "../components/SearchBar/Search";
 import {ResponseData} from "../components/SearchBar/constants";
 import axios from "axios";
 import BackgroundComponent from "../components/SearchBar/BackgroundComponent";
+import Footer from "./Footer";
 
 const SunnyScreen:React.FC = () => {
 
@@ -75,8 +76,9 @@ const SunnyScreen:React.FC = () => {
                             )): <div><h2>{ errorMsg }</h2></div>}
                         </div>
                     </div>
-                </div>
+                </div> 
             </div>
+            
         </>
     );
 }

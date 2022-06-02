@@ -7,7 +7,6 @@ import './screens/styles/sunnyScreen.css';
 import './screens/styles/nightScreen.css';
 import './components/SearchBar/styles/BackgroundComponent.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
