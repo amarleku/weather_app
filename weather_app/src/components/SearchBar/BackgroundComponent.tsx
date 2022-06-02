@@ -5,37 +5,45 @@ import moonSVG from '../../assets/moon.svg';
 import snowSVG from '../../assets/snow.svg';
 import rainSVG from '../../assets/rain.svg';
 
+import Footer from "../../screens/Footer";
+
+
 // Import Props Interface
 import { BackgroundProps } from "./constants";
 
 const MainComponent:React.FC<BackgroundProps> = ({ conditions, hour }) => {
-    useEffect(() => {
-        console.log(hour.valueOf());
-        if(conditions?.toLowerCase().includes('clear')){
-            console.log(conditions);
-        }
-    })
     return(
         <>
-            {conditions?.toLowerCase().includes('clear') && hour?.valueOf() < 18 ? <div className={'backgroundClear'}>
+            {conditions?.toLowerCase().includes('clear') && hour?.valueOf() < 18 ? 
+            <> <div className={'backgroundClear'}></div>
                 <div className={'weatherLogo'}>
                     <img src={sunSVG} alt={"Sun Icon"} className={'sunSVG'} />
-                </div>
-            </div> : <div className={'backgroundDark'}>
+                </div> 
+            </> 
+                : 
+            <> <div className={'backgroundNight'}></div>
                 <div className={'weatherLogo'}>
-                    <img src={rainSVG} alt={"Sun Icon"} className={'sunSVG'} />
-                </div>
-            </div>}
+                    <img src={moonSVG} alt={"Sun Icon"} className={'sunSVG'} />
+                </div> 
+            </>
+            }
 
-            {conditions?.toLowerCase().includes('cloudy') && hour?.valueOf() > 18 ? <div className={'backgroundNight'}>
+            {conditions?.toLowerCase().includes('clear') && hour?.valueOf() > 18 ? 
+            <> <div className={'backgroundNight'}></div>
                 <div className={'weatherLogo'}>
-                    <img src={rainSVG} alt={"Sun Icon"} className={'sunSVG'} />
+                    <img src={moonSVG} alt={"Sun Icon"} className={'sunSVG'} />
                 </div>
-            </div> : conditions?.toLowerCase().includes('cloudy') && hour?.valueOf() < 18 && <div className={'backgroundDark'}>
+            </> 
+                : 
+            conditions?.toLowerCase().includes('cloudy') && hour?.valueOf() < 18 &&
+            <>
+                <div className={'backgroundDark'}></div>
                 <div className={'weatherLogo'}>
-                    <img src={rainSVG} alt={"Sun Icon"} className={'sunSVG'} />
+                    <img src={rainSVG} alt={"Sun Icon"} className={'sunSVGg'} />
                 </div>
-            </div>}
+            </>
+            }
+            <Footer />
         </>
     );
 }
