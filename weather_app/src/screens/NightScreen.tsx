@@ -15,6 +15,7 @@ const NightScreen: React.FC = () => {
             {
                 conditions: '',
                 datetime: '',
+                datetimeEpoch: 0,
                 temp: '',
                 description: '',
                 humidity: '',

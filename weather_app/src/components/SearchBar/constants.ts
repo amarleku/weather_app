@@ -5,6 +5,7 @@ export interface ResponseData {
     days: [{
         conditions: string,
         datetime: string,
+        datetimeEpoch: number,
         temp: string,
         description: string,
         humidity: string,
@@ -20,5 +21,5 @@ export interface Props {
 
 export interface BackgroundProps {
     conditions: string | undefined;
-    hour: number
+    hour: number;
 }

@@ -13,6 +13,8 @@ const SunnyScreen:React.FC = () => {
 
     const[location, setLocation] = useState<string>('');
 
+    const[currentHour, setCurrentHour] = useState<number>(0);
+
     const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&include=days&key=T8F4NJ3HKJVN9BQNVJLVMSGJE&contentType=json`;
 
     const defaultURL = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Tirana?unitGroup=metric&include=days&key=T8F4NJ3HKJVN9BQNVJLVMSGJE&contentType=json';
@@ -20,6 +22,7 @@ const SunnyScreen:React.FC = () => {
     useEffect(() => {
         axios.get(defaultURL).then((response: any) => {
             setData(response.data);
+            setCurrentHour(data.days[0].datetimeEpoch);
         });
     }, []);
 
@@ -29,6 +32,7 @@ const SunnyScreen:React.FC = () => {
             {   
                 conditions: '',
                 datetime: '',
+                datetimeEpoch: 0,
                 temp: '',
                 description: '',
                 humidity: '',
@@ -41,13 +45,12 @@ const SunnyScreen:React.FC = () => {
 
     const[errorMsg, setErrorMsg] = useState<string>('');
 
-    const currentHour = new Date().getHours();
-
     const searchLocation = (event: { key: string; }) => {
         if(event.key===("Enter")) {
             axios.get(url).then((response: any) => {
                 console.log(response.data);
                 setData(response.data);
+                setCurrentHour(data.days[0].datetimeEpoch);
                 setErrorMsg('');
             }).catch((error) => {
                 setErrorMsg(error.response.data);
@@ -57,7 +60,7 @@ const SunnyScreen:React.FC = () => {
 
     return(
         <>
-            <BackgroundComponent conditions={data.days[0].conditions} hour={currentHour}/>
+            <BackgroundComponent conditions={data.days[0].conditions} hour={new Date(currentHour * 1000).getHours()}/>
             <div className="container">
                 <div className="card custom-card">
                     <div className="card-body">
