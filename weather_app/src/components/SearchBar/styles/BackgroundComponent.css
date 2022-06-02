@@ -1,6 +1,29 @@
-.background {
-    /* background-color: #712B75; */
+.backgroundClear {
+    /* background-color: #712B75; night */
     background-color: #6BA7CC;
+    /* background-color: #9e92aa; raining */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.backgroundDark {
+    /* background-color: #712B75; night */
+    /* background-color: #6BA7CC; */
+    background-color: #9e92aa;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.backgroundNight {
+    background-color: #712B75;
+    /* background-color: #6BA7CC; */
+    /* background-color: #9e92aa; */
     position: absolute;
     top: 0;
     bottom: 0;
