@@ -10,35 +10,33 @@ import { BackgroundProps } from "./constants";
 
 const MainComponent:React.FC<BackgroundProps> = ({ conditions, hour }) => {
     useEffect(() => {
-        console.log(hour);
+        console.log(hour.valueOf());
+        if(conditions?.toLowerCase().includes('clear')){
+            console.log(conditions);
+        }
     })
     return(
         <>
-            <div className={conditions?.toLowerCase().includes('clear') ? "backgroundClear" : "backgroundDark"}>
-                <div className="weatherLogo">
-                    {conditions?.toLowerCase().includes('clear') ? <img src={sunSVG} alt="Sun SVG" className="sunSVG" />
-                    : <img src={rainSVG} alt="Sun SVG" className="sunSVG" /> }
-                    {/* {conditions.toLowerCase().search('cloud') ? <img src={rainSVG} alt="Sun SVG" className="sunSVG" />
-                    : ''} */}
-                    {/* <img src={sunSVG} alt="Sun SVG" className="sunSVG" /> */}
-                    {/* <img src={moonSVG} alt="Moon SVG" className="moonSVG" /> */}
-                    {/*<img src={snowSVG} alt="Moon SVG" className="moonSVG" />*/}
-                    {/* <img src={rainSVG} alt="Rain SVG" className="rainSVG" /> */}
+            {conditions?.toLowerCase().includes('clear') && hour?.valueOf() < 18 ? <div className={'backgroundClear'}>
+                <div className={'weatherLogo'}>
+                    <img src={sunSVG} alt={"Sun Icon"} className={'sunSVG'} />
                 </div>
-            </div>
-            
-            <div className={hour?.valueOf() > 15 ? "backgroundNight" : "backgroundDark"}>
-                <div className="weatherLogo">
-                    {conditions?.toLowerCase().includes('clear') ? <img src={moonSVG} alt="Sun SVG" className="sunSVG" />
-                    : <img src={rainSVG} alt="Sun SVG" className="sunSVG" /> }
-                    {/* <img src={sunSVG} alt="Sun SVG" className="sunSVG" /> */}
-                    {/* <img src={moonSVG} alt="Moon SVG" className="moonSVG" /> */}
-                    {/*<img src={snowSVG} alt="Moon SVG" className="moonSVG" />*/}
-                    {/* <img src={rainSVG} alt="Rain SVG" className="rainSVG" /> */}
+            </div> : <div className={'backgroundDark'}>
+                <div className={'weatherLogo'}>
+                    <img src={rainSVG} alt={"Sun Icon"} className={'sunSVG'} />
                 </div>
-            </div>
+            </div>}
+
+            {conditions?.toLowerCase().includes('cloudy') && hour?.valueOf() > 18 ? <div className={'backgroundNight'}>
+                <div className={'weatherLogo'}>
+                    <img src={rainSVG} alt={"Sun Icon"} className={'sunSVG'} />
+                </div>
+            </div> : conditions?.toLowerCase().includes('cloudy') && hour?.valueOf() < 18 && <div className={'backgroundDark'}>
+                <div className={'weatherLogo'}>
+                    <img src={rainSVG} alt={"Sun Icon"} className={'sunSVG'} />
+                </div>
+            </div>}
         </>
-        
     );
 }
 
