@@ -8,6 +8,7 @@ import Search from "../components/SearchBar/Search";
 import { ResponseData } from "../components/SearchBar/constants";
 import axios from "axios";
 import BackgroundComponent from "../components/SearchBar/BackgroundComponent";
+import Footer from "./Footer";
 
 const SunnyScreen: React.FC = () => {
 
@@ -65,7 +66,7 @@ const SunnyScreen: React.FC = () => {
 
     return (
         <>
-            <BackgroundComponent conditions={data.days[0].conditions} hour={currentTime}/>
+            <BackgroundComponent conditions={data.days[0].conditions} hour={currentTime} />
             <div className="container">
                 <div className="card custom-card">
                     <div className="card-body">
@@ -89,6 +90,7 @@ const SunnyScreen: React.FC = () => {
                     </div>
                 </div>
             </div>
+
         </>
     );
 }
