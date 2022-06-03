@@ -1,29 +1,10 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer, useState } from 'react';
 
 export const LocationsContext = createContext({
-    locations: [],
-    addlocation: (locationData: { name: string, temp: number, description: string, humidity: number }) => { },
-    setlocations: (locations: []) => { },
-    deletelocation: (name: string) => { },
+    locations: [{}],
+    addLocation: (locationName: string) => { },
+    removeLocation: (locationName: string) => { },
 });
-
-
-function locationsReducer(state: any, action: any) {
-    switch (action.type) {
-        case 'CREATE_LOCATION':
-            localStorage.setItem(action.payload.name, action.payload)
-            return [action.payload, ...state]
-        case 'SET_LOCATIONS':
-            return action.payload;
-        case 'DELETE_LOCATION':
-            localStorage.removeItem(action.payload)
-            console.log(action.payload);
-            console.log(state);
-            return state.filter((location: { name: string, temp: number, description: string, humidity: number }) => location.name !== action.payload)
-        default:
-            return state;
-    }
-}
 
 type Props = {
     children?: React.ReactNode
@@ -31,23 +12,20 @@ type Props = {
 
 function LocationsContextProvider({ children }: Props) {
 
-    const [locationState, dispatch] = useReducer(locationsReducer, []);
-    function addlocation(locationData: any) {
-        dispatch({ type: 'CREATE_LOCATION', payload: locationData });
+    const [favoriteLocations, setFavoriteLocations] = useState(['']);
+
+    function addLocation(locationName: string){
+        setFavoriteLocations((currentLocationName: any) => [...currentLocationName, locationName]);
     }
-    function setlocations(locations: []) {
-        dispatch({ type: 'SET_LOCATIONS', payload: locations });
-    }
-    function deletelocation(name: string) {
-        console.log(name);
-        dispatch({ type: 'DELETE_LOCATION', payload: name });
+
+    function removeLocation(locationName: string){
+        setFavoriteLocations((currentLocationName: any) => currentLocationName.filter((locName: string) => locName != locationName));
     }
 
     const value = {
-        locations: locationState,
-        setlocations: setlocations,
-        addlocation: addlocation,
-        deletelocation: deletelocation,
+        locations: favoriteLocations,
+        addLocation: addLocation,
+        removeLocation: removeLocation
     };
 
     return (

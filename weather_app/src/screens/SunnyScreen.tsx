@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext } from "react";
 
 // import { Sun } from '../styles/images';
 import sunny from '../assets/sun.svg';
@@ -8,6 +8,8 @@ import Search from "../components/SearchBar/Search";
 import {ResponseData} from "../components/SearchBar/constants";
 import axios from "axios";
 import BackgroundComponent from "../components/SearchBar/BackgroundComponent";
+import {LocationsContext} from "../store/location-context.";
+import {FaStar} from "react-icons/fa";
 
 const SunnyScreen:React.FC = () => {
 
@@ -40,6 +42,17 @@ const SunnyScreen:React.FC = () => {
 
     const[errorMsg, setErrorMsg] = useState<string>('');
 
+    const removeFav = useContext(LocationsContext).removeLocation;
+    const addFav = useContext(LocationsContext).addLocation;
+    const isFavoriteLocation = useContext(LocationsContext).locations.includes(location);
+
+    const changeFavoriteStatusHandler = () => {
+        if(isFavoriteLocation){
+            removeFav(location);
+        }else{
+           addFav(location);
+        }
+    }
 
     const searchLocation = (event: { key: string; }) => {
         if(event.key===("Enter")) {
@@ -59,6 +72,16 @@ const SunnyScreen:React.FC = () => {
                 <div className="card custom-card">
                     <div className="card-body">
                         <div className="inputWrapper">
+                            <FaStar
+                                onClick={changeFavoriteStatusHandler}
+                                style={isFavoriteLocation ? {color: 'yellow' } : {color: 'grey' }}
+                            />
+                            {/*<button*/}
+                            {/*    onClick={changeFavoriteStatusHandler}*/}
+                            {/*    style={isFavoriteLocation ? {background: 'yellow' } : {background: 'grey' }}*/}
+                            {/*    >*/}
+                            {/*    Favorites*/}
+                            {/*</button>*/}
                             <Search searchLocation={(event) => searchLocation(event)}
                                     handleInputChange={(event) => setLocation(event.target.value)}/>
                         </div>

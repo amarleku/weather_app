@@ -7,14 +7,17 @@ import './screens/styles/sunnyScreen.css';
 import './screens/styles/nightScreen.css';
 import './components/SearchBar/styles/BackgroundComponent.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import LocationsContextProvider from "./store/location-context.";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
+    <LocationsContextProvider>
   <React.StrictMode>
     <App />
   </React.StrictMode>
+    </LocationsContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
