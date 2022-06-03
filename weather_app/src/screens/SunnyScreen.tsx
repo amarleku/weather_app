@@ -15,15 +15,27 @@ import FavoritesScreen from "./FavoritesScreen";
 const SunnyScreen:React.FC = () => {
 
     const[location, setLocation] = useState<string>('');
+    const clickedLocation = useContext(LocationsContext).clickedLocation;
 
     const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&include=days&key=T8F4NJ3HKJVN9BQNVJLVMSGJE&contentType=json`;
 
     const defaultURL = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Tirana?unitGroup=metric&include=days&key=T8F4NJ3HKJVN9BQNVJLVMSGJE&contentType=json';
 
     useEffect(() => {
-        axios.get(defaultURL).then((response: any) => {
-            setData(response.data);
-        });
+        if(clickedLocation.length != 0){
+            setLocation(clickedLocation)
+            console.log(location)
+            axios.get(url).then((response: any) => {
+                setData(response.data);
+                setErrorMsg('');
+            }).catch((error) => {
+                setErrorMsg(error.response.data);
+            });
+        }else{
+            axios.get(defaultURL).then((response: any) => {
+                setData(response.data);
+            });
+        }
     }, []);
 
     const[data,setData] = useState<ResponseData>({

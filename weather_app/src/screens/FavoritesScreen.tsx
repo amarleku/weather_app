@@ -10,11 +10,11 @@ import SunnyScreen from "./SunnyScreen";
 
 const FavoritesScreen:React.FC = () => {
 
-    const[location, setLocation] = useState<string>('');
-
-    const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&include=days&key=T8F4NJ3HKJVN9BQNVJLVMSGJE&contentType=json`;
-
-    const defaultURL = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Tirana?unitGroup=metric&include=days&key=T8F4NJ3HKJVN9BQNVJLVMSGJE&contentType=json';
+    // const[clickedLocation, setClickedLocation] = useState<string>('');
+    //
+    // const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&include=days&key=T8F4NJ3HKJVN9BQNVJLVMSGJE&contentType=json`;
+    //
+    // const defaultURL = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Tirana?unitGroup=metric&include=days&key=T8F4NJ3HKJVN9BQNVJLVMSGJE&contentType=json';
 
     // useEffect(() => {
     //     axios.get(defaultURL).then((response: any) => {
@@ -37,11 +37,17 @@ const FavoritesScreen:React.FC = () => {
     // });
 
     const favoritesLocation = useContext(LocationsContext).locations;
+    const setClickedLocation = useContext(LocationsContext).chooseClickedLocation;
 
     const [showMainScreen, setShowMainScreen] = useState<boolean>(false);
 
     const goBackToMainScreen = () => {
         setShowMainScreen(true);
+    }
+
+    const goBackToSearch = (clickedLocation:string) => {
+        setShowMainScreen(true);
+        setClickedLocation(clickedLocation);
     }
 
     const[errorMsg, setErrorMsg] = useState<string>('');
@@ -70,7 +76,7 @@ const FavoritesScreen:React.FC = () => {
                         <button onClick={goBackToMainScreen}>Go back to main Screen</button>
                         <div className="infoWrapper">
                             {errorMsg == '' ? favoritesLocation.slice(0).map((item, index) => (
-                                <div className="stats" key={index}>
+                                <div className="stats" key={index} onClick={() => goBackToSearch(item.toLocaleString())}>
                                     <h2 className="date-header">{ item.toLocaleString() }</h2>
                                     {/*<h3 className="pt-4">{ data.address }</h3>*/}
                                     {/*<h3> { item.temp }°C</h3>*/}
