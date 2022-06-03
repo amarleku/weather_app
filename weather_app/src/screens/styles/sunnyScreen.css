@@ -78,10 +78,11 @@
 .inputWrapper {
   width: 50%;
 }
+
 .infoWrapper {
   display: flex;
   justify-content: space-around;
-  padding-top: 100px;
+  padding-top: 50px;
 }
 
 .custom-card {
@@ -107,6 +108,33 @@
   height: 30px;
   margin-left: 10px;
   margin-bottom: 5px;
+}
+
+.favorite-controls {
+  display: flex;
+  justify-content: end;
+  margin-bottom: -50px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.favorite-btn {
+  margin-right: 30px;
+  font-size: 20px;
+  margin-top: 10px;
+  color: #f2fbff;
+  cursor: pointer;
+}
+
+.favorite-star {
+  margin-left: 50px;
+  width: 40px;
+  height: 40px;
+  margin-top: 4px;
+  color: yellow;
 }
 
 @media screen and (max-width: 500px) {
