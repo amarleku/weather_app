@@ -1,40 +1,11 @@
-import React, {useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 
-import Search from "../components/SearchBar/Search";
 
-import {ResponseData} from "../components/SearchBar/constants";
-import axios from "axios";
 import BackgroundComponent from "../components/SearchBar/BackgroundComponent";
 import {LocationsContext} from "../store/location-context.";
 import SunnyScreen from "./SunnyScreen";
 
 const FavoritesScreen:React.FC = () => {
-
-    // const[clickedLocation, setClickedLocation] = useState<string>('');
-    //
-    // const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&include=days&key=T8F4NJ3HKJVN9BQNVJLVMSGJE&contentType=json`;
-    //
-    // const defaultURL = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Tirana?unitGroup=metric&include=days&key=T8F4NJ3HKJVN9BQNVJLVMSGJE&contentType=json';
-
-    // useEffect(() => {
-    //     axios.get(defaultURL).then((response: any) => {
-    //         setData(response.data);
-    //     });
-    // }, []);
-    //
-    // const[data,setData] = useState<ResponseData>({
-    //     address: '',
-    //     days: [
-    //         {
-    //             datetime: '',
-    //             temp: '',
-    //             description: '',
-    //             humidity: '',
-    //             windSpeed: ''
-    //         }
-    //     ],
-    //     errorMsg: ''
-    // });
 
     const favoritesLocation = useContext(LocationsContext).locations;
     const setClickedLocation = useContext(LocationsContext).chooseClickedLocation;
@@ -65,7 +36,7 @@ const FavoritesScreen:React.FC = () => {
 
     return(
         <>
-            <BackgroundComponent />
+            {/* <BackgroundComponent /> */}
             {showMainScreen ? <SunnyScreen /> : <div className="container">
                 <div className="card custom-card">
                     <div className="card-body">

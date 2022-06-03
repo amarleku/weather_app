@@ -1,20 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // Import SVG Logo
 import sunSVG  from '../../assets/sun.svg';
 import moonSVG from '../../assets/moon.svg';
 import snowSVG from '../../assets/snow.svg';
+import rainSVG from '../../assets/rain.svg';
 
-const MainComponent:React.FC = () => {
+import Footer from "../../screens/Footer";
+
+
+// Import Props Interface
+import { BackgroundProps } from "./constants";
+
+const MainComponent:React.FC<BackgroundProps> = ({ conditions, hour }) => {
     return(
-        <div className="background">
-            <div className="weatherLogo">
-                {/* <img src={sunSVG} alt="Sun SVG" className="sunSVG" /> */}
-                {/* <img src={moonSVG} alt="Moon SVG" className="moonSVG" /> */}
-                <img src={snowSVG} alt="Moon SVG" className="moonSVG" />
-            </div>
-        </div>
+        <>
+            {conditions?.toLowerCase().includes('clear') && hour?.valueOf() < 18 ? 
+            <> 
+                <div className={'backgroundClear'}></div>
+                <div className={'weatherLogo'}>
+                    <img src={sunSVG} alt={"Sun Icon"} className={'sunSVG'} />
+                </div> 
+            </> 
+                : 
+            <> 
+                <div className={'backgroundNight'}></div>
+                <div className={'weatherLogo'}>
+                    <img src={moonSVG} alt={"Sun Icon"} className={'sunSVG'} />
+                </div> 
+            </>
+            }
+
+            {conditions?.toLowerCase().includes('clear') && hour?.valueOf() > 18 ? 
+            <> 
+                <div className={'backgroundNight'}></div>
+                <div className={'weatherLogo'}>
+                    <img src={moonSVG} alt={"Sun Icon"} className={'sunSVG'} />
+                </div>
+            </> 
+                : 
+            conditions?.toLowerCase().includes('cloudy') && hour?.valueOf() < 18 &&
+            <>
+                <div className={'backgroundDark'}></div>
+                <div className={'weatherLogo'}>
+                    <img src={rainSVG} alt={"Sun Icon"} className={'sunSVGg'} />
+                </div>
+            </>
+            }
+            <Footer />
+        </>
     );
 }
 
 export default MainComponent;
-

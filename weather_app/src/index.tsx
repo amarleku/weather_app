@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(
 root.render(
     <LocationsContextProvider>
   <React.StrictMode>
-    <App />
+      <App />
   </React.StrictMode>
     </LocationsContextProvider>
 );
