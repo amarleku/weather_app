@@ -1,1 +1,2 @@
-# weather_app
+Demo Weather App.
+Build on React TS
