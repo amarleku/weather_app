@@ -10,6 +10,7 @@ import axios from "axios";
 import BackgroundComponent from "../components/SearchBar/BackgroundComponent";
 import {LocationsContext} from "../store/location-context.";
 import {FaStar} from "react-icons/fa";
+import FavoritesScreen from "./FavoritesScreen";
 
 const SunnyScreen:React.FC = () => {
 
@@ -39,7 +40,6 @@ const SunnyScreen:React.FC = () => {
         errorMsg: ''
     });
 
-
     const[errorMsg, setErrorMsg] = useState<string>('');
 
     const removeFav = useContext(LocationsContext).removeLocation;
@@ -52,6 +52,10 @@ const SunnyScreen:React.FC = () => {
         }else{
            addFav(location);
         }
+    }
+
+    const goToFavoriteLocations = () => {
+        return <FavoritesScreen/>
     }
 
     const searchLocation = (event: { key: string; }) => {
@@ -76,12 +80,11 @@ const SunnyScreen:React.FC = () => {
                                 onClick={changeFavoriteStatusHandler}
                                 style={isFavoriteLocation ? {color: 'yellow' } : {color: 'grey' }}
                             />
-                            {/*<button*/}
-                            {/*    onClick={changeFavoriteStatusHandler}*/}
-                            {/*    style={isFavoriteLocation ? {background: 'yellow' } : {background: 'grey' }}*/}
-                            {/*    >*/}
-                            {/*    Favorites*/}
-                            {/*</button>*/}
+                            <button
+                                onClick={goToFavoriteLocations}
+                                >
+                                Show favorites
+                            </button>
                             <Search searchLocation={(event) => searchLocation(event)}
                                     handleInputChange={(event) => setLocation(event.target.value)}/>
                         </div>
