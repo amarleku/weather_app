@@ -15,13 +15,15 @@ const MainComponent:React.FC<BackgroundProps> = ({ conditions, hour }) => {
     return(
         <>
             {conditions?.toLowerCase().includes('clear') && hour?.valueOf() < 18 ? 
-            <> <div className={'backgroundClear'}></div>
+            <> 
+                <div className={'backgroundClear'}></div>
                 <div className={'weatherLogo'}>
                     <img src={sunSVG} alt={"Sun Icon"} className={'sunSVG'} />
                 </div> 
             </> 
                 : 
-            <> <div className={'backgroundNight'}></div>
+            <> 
+                <div className={'backgroundNight'}></div>
                 <div className={'weatherLogo'}>
                     <img src={moonSVG} alt={"Sun Icon"} className={'sunSVG'} />
                 </div> 
@@ -29,7 +31,8 @@ const MainComponent:React.FC<BackgroundProps> = ({ conditions, hour }) => {
             }
 
             {conditions?.toLowerCase().includes('clear') && hour?.valueOf() > 18 ? 
-            <> <div className={'backgroundNight'}></div>
+            <> 
+                <div className={'backgroundNight'}></div>
                 <div className={'weatherLogo'}>
                     <img src={moonSVG} alt={"Sun Icon"} className={'sunSVG'} />
                 </div>
