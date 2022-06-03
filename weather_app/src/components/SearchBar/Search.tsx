@@ -11,7 +11,7 @@ const Search:React.FC<Props> = ({ searchLocation, handleInputChange }) => {
                 temp: '',
                 description: '',
                 humidity: '',
-                windSpeed: ''
+                windspeed: ''
             }
         ],
         errorMsg: ''
@@ -57,8 +57,8 @@ const Search:React.FC<Props> = ({ searchLocation, handleInputChange }) => {
                 <div className="humidity">
                     <p>{data ? data.days[0].humidity : ""}</p>
                 </div>
-                <div className="windSpeed">
-                    <p>{data ? data.days[0].windSpeed : ""}</p>
+                <div className="windspeed">
+                    <p>{data ? data.days[0].windspeed : ""}</p>
                 </div>
                 <div className='errorMsg'>
                     <p>{ errorMsg }</p>

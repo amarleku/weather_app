@@ -8,28 +8,19 @@ import BackgroundComponent from "../components/SearchBar/BackgroundComponent";
 
 const SnowScreen: React.FC = () => {
 
-    const [initialData, setInitialData] = useState<ResponseData>({
-        address: '',
-        days: [
-            {
-                datetime: '',
-                temp: '',
-                description: '',
-                humidity: '',
-                windSpeed: ''
-            }
-        ],
-        errorMsg: ''
-    });
     const [data, setData] = useState<ResponseData>({
         address: '',
         days: [
             {
+                conditions: '',
                 datetime: '',
+                datetimeEpoch: 0,
                 temp: '',
+                tempmax: '',
                 description: '',
                 humidity: '',
-                windSpeed: ''
+                windspeed: '',
+                feelslikemax: ''
             }
         ],
         errorMsg: ''
@@ -49,7 +40,7 @@ const SnowScreen: React.FC = () => {
     }
     return (
         <>
-        <BackgroundComponent />
+        <BackgroundComponent conditions="" hour={12}/>
         <div className="container">
             <div className="card custom-card">
                 <div className="card-body">
