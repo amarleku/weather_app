@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-
-// import { Sun } from '../styles/images';
-import sunny from '../assets/sun.svg';
-
-import Search from "../components/SearchBar/Search";
-
-import { ResponseData } from "../components/SearchBar/constants";
 import axios from "axios";
+
+// Component Imports
+import Search from "../components/SearchBar/Search";
 import BackgroundComponent from "../components/SearchBar/BackgroundComponent";
-import Footer from "./Footer";
+
+// Import Data Types
+import { ResponseData } from "../components/SearchBar/constants";
+
+// Icon Imports
+import sunIcon from '../assets/StatusIcons/Sunny.svg';
+import rainIcon from '../assets/StatusIcons/Rain.svg';
+import moonIcon from '../assets/StatusIcons/Moon.svg';
 
 const SunnyScreen: React.FC = () => {
 
@@ -17,6 +20,7 @@ const SunnyScreen: React.FC = () => {
     const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&include=days&key=T8F4NJ3HKJVN9BQNVJLVMSGJE&contentType=json`;
 
     const defaultURL = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Tirana?unitGroup=metric&include=days&key=T8F4NJ3HKJVN9BQNVJLVMSGJE&contentType=json';
+
 
     useEffect(() => {
         axios.get(defaultURL).then((response: any) => {
@@ -79,8 +83,14 @@ const SunnyScreen: React.FC = () => {
                                 <div className="stats" key={index}>
                                     <h3 className="date-header">{item.datetime}</h3>
                                     <h4 className="pt-4">{data.address}</h4>
-                                    <h4> <b><i>{item.tempmax}°C</i></b></h4>
-                                    <h5> {item.description} </h5>
+                                    <h4> <b><i>{item.tempmax}°C</i></b>
+                                    <img src={item.conditions.toLowerCase().includes('clear') && currentTime < 18 ? sunIcon : 
+                                                item.conditions.toLowerCase().search('clear') && currentTime > 18 ? moonIcon : 
+                                                item.conditions.toLowerCase().search('cloudy') && currentTime > 18 ? moonIcon :
+                                                item.conditions.toLowerCase().search('cloudy') && currentTime < 18 ? rainIcon : ''} 
+                                    className={'small-icon'} alt={'Small Icon'}/>                                    
+                                     </h4>
+                                    <h5>{item.description}</h5>
                                     <h5 className="pt-4">Humidity: {item.humidity}%</h5>
                                     <h5>Wind Speed: {item.windspeed}</h5>
                                     <h5><b><i>Feels Like: {item.feelslikemax}°C</i></b></h5>
@@ -90,7 +100,6 @@ const SunnyScreen: React.FC = () => {
                     </div>
                 </div>
             </div>
-
         </>
     );
 }
