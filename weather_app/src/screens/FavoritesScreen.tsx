@@ -6,6 +6,7 @@ import {ResponseData} from "../components/SearchBar/constants";
 import axios from "axios";
 import BackgroundComponent from "../components/SearchBar/BackgroundComponent";
 import {LocationsContext} from "../store/location-context.";
+import SunnyScreen from "./SunnyScreen";
 
 const FavoritesScreen:React.FC = () => {
 
@@ -37,6 +38,12 @@ const FavoritesScreen:React.FC = () => {
 
     const favoritesLocation = useContext(LocationsContext).locations;
 
+    const [showMainScreen, setShowMainScreen] = useState<boolean>(false);
+
+    const goBackToMainScreen = () => {
+        setShowMainScreen(true);
+    }
+
     const[errorMsg, setErrorMsg] = useState<string>('');
 
     // const searchLocation = (event: { key: string; }) => {
@@ -53,13 +60,14 @@ const FavoritesScreen:React.FC = () => {
     return(
         <>
             <BackgroundComponent />
-            <div className="container">
+            {showMainScreen ? <SunnyScreen /> : <div className="container">
                 <div className="card custom-card">
                     <div className="card-body">
                         <div className="inputWrapper">
                             {/*<Search searchLocation={(event) => searchLocation(event)}*/}
                             {/*        handleInputChange={(event) => setLocation(event.target.value)}/>*/}
                         </div>
+                        <button onClick={goBackToMainScreen}>Go back to main Screen</button>
                         <div className="infoWrapper">
                             {errorMsg == '' ? favoritesLocation.slice(0).map((item, index) => (
                                 <div className="stats" key={index}>
@@ -74,7 +82,7 @@ const FavoritesScreen:React.FC = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>}
         </>
     );
 }

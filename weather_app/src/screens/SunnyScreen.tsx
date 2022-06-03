@@ -54,8 +54,11 @@ const SunnyScreen:React.FC = () => {
         }
     }
 
+    const [showFavorites, setShowFavorites] = useState<boolean>(false);
+
     const goToFavoriteLocations = () => {
-        return <FavoritesScreen/>
+        setShowFavorites(!showFavorites);
+        console.log(showFavorites);
     }
 
     const searchLocation = (event: { key: string; }) => {
@@ -72,6 +75,7 @@ const SunnyScreen:React.FC = () => {
     return(
         <>
             <BackgroundComponent />
+            {showFavorites ? <FavoritesScreen /> : 
             <div className="container">
                 <div className="card custom-card">
                     <div className="card-body">
@@ -103,6 +107,7 @@ const SunnyScreen:React.FC = () => {
                     </div>
                 </div>
             </div>
+            }
         </>
     );
 }
