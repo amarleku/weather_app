@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 // Import SVG Logo
 import sunSVG  from '../../assets/sun.svg';
 import moonSVG from '../../assets/moon.svg';
-import snowSVG from '../../assets/snow.svg';
 import rainSVG from '../../assets/rain.svg';
 
 import Footer from "../../screens/Footer";
-
 
 // Import Props Interface
 import { BackgroundProps } from "./constants";

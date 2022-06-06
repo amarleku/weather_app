@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 
 // Component Imports
 import Search from "../components/SearchBar/Search";
 import BackgroundComponent from "../components/SearchBar/BackgroundComponent";
+import Footer from '../screens/Footer';
+import {LocationsContext} from "../store/location-context.";
+import {FaStar} from "react-icons/fa";
+import FavoritesScreen from "./FavoritesScreen";
 
 // Import Data Types
 import { ResponseData } from "../components/SearchBar/constants";
+
 
 // Icon Imports
 import sunIcon from '../assets/StatusIcons/Sunny.svg';
@@ -16,6 +21,15 @@ import moonIcon from '../assets/StatusIcons/Moon.svg';
 const SunnyScreen: React.FC = () => {
 
     const [location, setLocation] = useState<string>('');
+    const [showFavorites, setShowFavorites] = useState<boolean>(false);
+    const [showFavoriteActions, setShowFavoriteActions] = useState<boolean>(false);
+    const [favoriteToggle, setFavoriteToggle] = useState<boolean>(false);
+    const [errorMsg, setErrorMsg] = useState<string>('');
+    
+    const clickedLocation = useContext(LocationsContext).clickedLocation;
+    const addedLocations = useContext(LocationsContext).locations;
+
+    const favoriteUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${clickedLocation}?unitGroup=metric&include=days&key=T8F4NJ3HKJVN9BQNVJLVMSGJE&contentType=json`;
 
     const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&include=days&key=T8F4NJ3HKJVN9BQNVJLVMSGJE&contentType=json`;
 
@@ -23,9 +37,23 @@ const SunnyScreen: React.FC = () => {
 
 
     useEffect(() => {
-        axios.get(defaultURL).then((response: any) => {
-            setData(response.data);
-        });
+        if(addedLocations.length != 1) {
+            setFavoriteToggle(true);
+        }
+        if(clickedLocation.length != 0){
+            setLocation(clickedLocation);
+            setShowFavoriteActions(true);
+            axios.get(favoriteUrl).then((response: any) => {
+                setData(response.data);
+                setErrorMsg('');
+            }).catch((error) => {
+                setErrorMsg(error.response.data);
+            });
+        }else{
+            axios.get(defaultURL).then((response: any) => {
+                setData(response.data);
+            });
+        }
     }, []);
 
     const [data, setData] = useState<ResponseData>({
@@ -46,15 +74,30 @@ const SunnyScreen: React.FC = () => {
         errorMsg: ''
     });
 
+ 
+    const removeFav = useContext(LocationsContext).removeLocation;
+    const addFav = useContext(LocationsContext).addLocation;
+    // const isFavoriteLocation = useContext(LocationsContext).locations.includes(location);
 
-    const [errorMsg, setErrorMsg] = useState<string>('');
+    const changeFavoriteStatusHandler = () => {
+        if(favoriteToggle){
+            setFavoriteToggle(!favoriteToggle);
+            removeFav(location);
+        }else{
+            setFavoriteToggle(!favoriteToggle);
+            addFav(location);
+        }
+    }
 
-    const currentTime = new Date().getHours();
+    const goToFavoriteLocations = () => {
+        setShowFavorites(!showFavorites);
+    }
 
     const searchLocation = (event: { key: string; }) => {
         if (event.key === ("Enter")) {
+            setFavoriteToggle(false);
             axios.get(url).then((response: any) => {
-                console.log(response.data);
+                setShowFavoriteActions(true);
                 setData(response.data);
                 setErrorMsg('');
             }).catch((error) => {
@@ -63,14 +106,17 @@ const SunnyScreen: React.FC = () => {
                 }else {
                     setErrorMsg(error.response.data);
                 }
-                console.log(error);
             });
         }
     }
 
+    const currentTime = new Date().getHours();
+
     return (
         <>
-            <BackgroundComponent conditions={data.days[0].conditions} hour={currentTime} />
+            {showFavorites ? <FavoritesScreen /> :
+            <>
+            <BackgroundComponent conditions={data.days[0].conditions} hour={currentTime} /> 
             <div className="container">
                 <div className="card custom-card">
                     <div className="card-body">
@@ -78,17 +124,28 @@ const SunnyScreen: React.FC = () => {
                             <Search searchLocation={(event) => searchLocation(event)}
                                 handleInputChange={(event) => setLocation(event.target.value)} />
                         </div>
+                        <div className="favorite-controls">
+                            <div className="actions">
+                                {showFavoriteActions ? <FaStar
+                                    onClick={changeFavoriteStatusHandler} className={"favorite-star"}
+                                    style={favoriteToggle ? {color: 'yellow' } : {color: 'grey' }}
+                                /> : ''}
+                                <h4 className="favorite-btn"
+                                    onClick={goToFavoriteLocations}> Show favorites
+                                </h4>
+                            </div>
+                        </div>
                         <div className="infoWrapper">
                             {errorMsg === '' ? data.days.slice(0, 5).map((item, index) => (
                                 <div className="stats" key={index}>
                                     <h3 className="date-header">{item.datetime}</h3>
                                     <h4 className="pt-4">{data.address}</h4>
                                     <h4> <b><i>{item.tempmax}°C</i></b>
-                                    <img src={item.conditions.toLowerCase().includes('clear') && currentTime < 18 ? sunIcon : 
-                                                item.conditions.toLowerCase().search('clear') && currentTime > 18 ? moonIcon : 
-                                                item.conditions.toLowerCase().search('cloudy') && currentTime > 18 ? moonIcon :
-                                                item.conditions.toLowerCase().search('cloudy') && currentTime < 18 ? rainIcon : ''} 
-                                    className={'small-icon'} alt={'Small Icon'}/>                                    
+                                    <img src={item.conditions.toLowerCase().includes('clear') && currentTime > 18 ? sunIcon : 
+                                                item.conditions.toLowerCase().includes('clear') && currentTime < 18 ? moonIcon : 
+                                                item.conditions.toLowerCase().includes('cloudy') && currentTime > 18 ? moonIcon :
+                                                item.conditions.toLowerCase().includes('cloudy') && currentTime < 18 ? rainIcon : ''} 
+                                    className={'small-icon'}/>                                    
                                      </h4>
                                     <h5>{item.description}</h5>
                                     <h5 className="pt-4">Humidity: {item.humidity}%</h5>
@@ -100,6 +157,8 @@ const SunnyScreen: React.FC = () => {
                     </div>
                 </div>
             </div>
+            </ >
+            }
         </>
     );
 }

@@ -21,7 +21,8 @@ export interface Props {
     handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
+
 export interface BackgroundProps {
-    conditions: string | undefined;
-    hour: number;
+    conditions?: string | undefined;
+    hour?: any
 }

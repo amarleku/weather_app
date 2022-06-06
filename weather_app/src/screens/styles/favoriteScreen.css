@@ -1,0 +1,49 @@
+.header-wrapper {
+    width: 100%;
+}
+.favorite-header {
+    display: flex;
+    justify-content: center;
+    color: #f2fbff;
+}
+
+.locations {
+    display: flex;
+    justify-content: center;
+    margin-right: 100px;
+}
+
+.location-header {
+    margin-top: 50px;
+    color: #f2fbff;
+    cursor: pointer;
+}
+
+.no-favorites {
+    display: flex;
+    justify-content: center;
+    color: #ae5950;
+    margin-top: 60px;
+}
+
+.go-back {
+    cursor: pointer;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    color: #ae5950;
+} 
+
+@media screen and (max-width: 500px) {
+    .actions {
+        margin-top: 60px;
+    }
+
+    .favorite-star {
+        margin-left: 75px;
+    }
+    .favorite-btn {
+        margin-left: 30px;
+    }
+
+}
