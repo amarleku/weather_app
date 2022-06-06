@@ -24,12 +24,13 @@ const FavoritesScreen:React.FC = () => {
     }
 
     useEffect(() => {
+
         if(favoritesLocation.length == 1) {
             setShowMessage(true);
         }
     });
 
-    return(
+    return( 
         <>
             {showMainScreen ? <SunnyScreen /> :
             <>
@@ -43,7 +44,7 @@ const FavoritesScreen:React.FC = () => {
                         {!showMessage ? <div className="locationsWrapper">
                             {favoritesLocation.map((item, index) => (
                                 <div className="locations" key={index} onClick={() => goBackToSearch(item.toLocaleString())}>
-                                    <h1 className="date-header"><b><i>{ item.toLocaleString() }</i></b></h1>
+                                    <h1 className="location-header"><b><i>{ item.toLocaleString() }</i></b></h1>
                                 </div>
                             ))}
                         </div> :

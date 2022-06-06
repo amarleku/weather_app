@@ -4,6 +4,7 @@ import axios from "axios";
 // Component Imports
 import Search from "../components/SearchBar/Search";
 import BackgroundComponent from "../components/SearchBar/BackgroundComponent";
+import Footer from '../screens/Footer';
 import {LocationsContext} from "../store/location-context.";
 import {FaStar} from "react-icons/fa";
 import FavoritesScreen from "./FavoritesScreen";
@@ -36,7 +37,7 @@ const SunnyScreen: React.FC = () => {
 
 
     useEffect(() => {
-        if(addedLocations.length == 1) {
+        if(addedLocations.length != 1) {
             setFavoriteToggle(true);
         }
         if(clickedLocation.length != 0){
@@ -79,14 +80,12 @@ const SunnyScreen: React.FC = () => {
     // const isFavoriteLocation = useContext(LocationsContext).locations.includes(location);
 
     const changeFavoriteStatusHandler = () => {
-        setFavoriteToggle(!favoriteToggle);
         if(favoriteToggle){
-            //setFavoriteToggle(false);
+            setFavoriteToggle(!favoriteToggle);
             removeFav(location);
-            console.log("Removed");
         }else{
+            setFavoriteToggle(!favoriteToggle);
             addFav(location);
-            console.log("Added");
         }
     }
 
@@ -96,6 +95,7 @@ const SunnyScreen: React.FC = () => {
 
     const searchLocation = (event: { key: string; }) => {
         if (event.key === ("Enter")) {
+            setFavoriteToggle(false);
             axios.get(url).then((response: any) => {
                 setShowFavoriteActions(true);
                 setData(response.data);
@@ -141,10 +141,10 @@ const SunnyScreen: React.FC = () => {
                                     <h3 className="date-header">{item.datetime}</h3>
                                     <h4 className="pt-4">{data.address}</h4>
                                     <h4> <b><i>{item.tempmax}°C</i></b>
-                                    <img src={item.conditions.toLowerCase().includes('clear') && currentTime < 17 ? sunIcon : 
-                                                item.conditions.toLowerCase().includes('clear') && currentTime > 17 ? moonIcon : 
-                                                item.conditions.toLowerCase().includes('cloudy') && currentTime < 17 ? moonIcon :
-                                                item.conditions.toLowerCase().includes('cloudy') && currentTime > 17 ? rainIcon : ''} 
+                                    <img src={item.conditions.toLowerCase().includes('clear') && currentTime > 18 ? sunIcon : 
+                                                item.conditions.toLowerCase().includes('clear') && currentTime < 18 ? moonIcon : 
+                                                item.conditions.toLowerCase().includes('cloudy') && currentTime > 18 ? moonIcon :
+                                                item.conditions.toLowerCase().includes('cloudy') && currentTime < 18 ? rainIcon : ''} 
                                     className={'small-icon'}/>                                    
                                      </h4>
                                     <h5>{item.description}</h5>
@@ -156,7 +156,8 @@ const SunnyScreen: React.FC = () => {
                         </div>
                     </div>
                 </div>
-            </div></ >
+            </div>
+            </ >
             }
         </>
     );
