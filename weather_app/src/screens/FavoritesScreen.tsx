@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 
 
-import BackgroundComponent from "../components/SearchBar/BackgroundComponent";
+import BackgroundComponent from "../components/BackgroundComponent";
 import {LocationsContext} from "../store/location-context.";
-import SunnyScreen from "./SunnyScreen";
+import WeatherScreen from "./WeatherScreen";
 
 const FavoritesScreen:React.FC = () => {
 
@@ -42,7 +42,7 @@ const FavoritesScreen:React.FC = () => {
 
     return( 
         <>
-            {showMainScreen ? <SunnyScreen /> :
+            {showMainScreen ? <WeatherScreen /> :
             <>
             <BackgroundComponent conditions="clear" hour={12}/>
             <div className="container">
@@ -69,17 +69,6 @@ const FavoritesScreen:React.FC = () => {
                             <h2 className="go-back" onClick={() => goBackToMain()}>Go back to Forecast!</h2>
                         </div>
                         </> }
-                        {/* <div className="locationsWrapper">
-                            {favoritesLocation.map((item, index) => (
-                                <div className="locations" key={index} onClick={() => goBackToSearch(item.toLocaleString())}>
-                                    <h1 className="date-header"><b><i>{ item.toLocaleString() }</i></b></h1>
-                                </div>
-                            ))}
-                        </div>
-                        <div className="no-favorites">
-                            <h2>You have currently no favorite locations!</h2>
-                             onClick={() => goBackToSearch(item.toLocaleString())}
-                        </div>*/}
                     </div>
                 </div>
             </div>

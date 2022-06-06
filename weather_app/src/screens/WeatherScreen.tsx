@@ -3,8 +3,8 @@ import axios from "axios";
 
 // Component Imports
 import Search from "../components/SearchBar/Search";
-import BackgroundComponent from "../components/SearchBar/BackgroundComponent";
-import Footer from '../screens/Footer';
+import BackgroundComponent from "../components/BackgroundComponent";
+import Footer from './Footer';
 import {LocationsContext} from "../store/location-context.";
 import {FaStar} from "react-icons/fa";
 import FavoritesScreen from "./FavoritesScreen";
@@ -18,7 +18,12 @@ import sunIcon from '../assets/StatusIcons/Sunny.svg';
 import rainIcon from '../assets/StatusIcons/Rain.svg';
 import moonIcon from '../assets/StatusIcons/Moon.svg';
 
-const SunnyScreen: React.FC = () => {
+// URL Imports
+import * as Url from "../constants/url";
+import { replacePlaceholders } from "../utils/urlUtils";
+
+
+const WeatherScreen: React.FC = () => {
 
     const [location, setLocation] = useState<string>('');
     const [showFavorites, setShowFavorites] = useState<boolean>(false);
@@ -33,7 +38,7 @@ const SunnyScreen: React.FC = () => {
 
     const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&include=days&key=T8F4NJ3HKJVN9BQNVJLVMSGJE&contentType=json`;
 
-    const defaultURL = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Tirana?unitGroup=metric&include=days&key=T8F4NJ3HKJVN9BQNVJLVMSGJE&contentType=json';
+    const defaultURL = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Tirana?unitGroup=metric&include=days&key=T8F4NJ3HKJVN9BQNVJLVMSGJE&contentType=json`;
 
 
     useEffect(() => {
@@ -163,4 +168,4 @@ const SunnyScreen: React.FC = () => {
     );
 }
 
-export default SunnyScreen;
+export default WeatherScreen;

@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import './screens/styles/sunnyScreen.css';
 import './screens/styles/nightScreen.css';
 import './screens/styles/favoriteScreen.css'
-import './components/SearchBar/styles/BackgroundComponent.css';
+import './components/styles/BackgroundComponent.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LocationsContextProvider from "./store/location-context.";
 

@@ -1,13 +1,13 @@
 import React from "react";
 // Import SVG Logo
-import sunSVG  from '../../assets/sun.svg';
-import moonSVG from '../../assets/moon.svg';
-import rainSVG from '../../assets/rain.svg';
+import sunSVG  from '../assets/sun.svg';
+import moonSVG from '../assets/moon.svg';
+import rainSVG from '../assets/rain.svg';
 
-import Footer from "../../screens/Footer";
+import Footer from "../screens/Footer";
 
 // Import Props Interface
-import { BackgroundProps } from "./constants";
+import { BackgroundProps } from "./SearchBar/constants";
 
 const MainComponent:React.FC<BackgroundProps> = ({ conditions, hour }) => {
     return(

@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import SunnyScreen from './screens/SunnyScreen';
+import WeatherScreen from './screens/WeatherScreen';
 
 function App() {
   return (
     <div className="App">
-      <SunnyScreen />
+      <WeatherScreen />
       </div>
   );
 }
