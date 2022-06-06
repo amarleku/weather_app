@@ -7,12 +7,20 @@ import SunnyScreen from "./SunnyScreen";
 
 const FavoritesScreen:React.FC = () => {
 
+    useEffect(() => {
+        if(favoritesLocation.length == 1) {
+            setShowMessage(true);
+        }
+    });
+
     const [showMessage, setShowMessage] = useState<boolean>(false);
+    const [showMainScreen, setShowMainScreen] = useState<boolean>(false);
+    const [location, setLocation] = useState<any>();
 
     const favoritesLocation = useContext(LocationsContext).locations;
     const setClickedLocation = useContext(LocationsContext).chooseClickedLocation;
+    const contextHandler = useContext(LocationsContext);
 
-    const [showMainScreen, setShowMainScreen] = useState<boolean>(false);
 
     const goBackToSearch = (clickedLocation:string) => {
         setShowMainScreen(true);
@@ -23,12 +31,14 @@ const FavoritesScreen:React.FC = () => {
         setShowMainScreen(true);
     }
 
-    useEffect(() => {
+    const removeFromFavorite = (index: number) => {
+        setLocation(favoritesLocation[index + 1]);
+        contextHandler.removeLocation(location);
+        
+        favoritesLocation.splice(index + 1, 1);
+        console.log(favoritesLocation);
+    }
 
-        if(favoritesLocation.length == 1) {
-            setShowMessage(true);
-        }
-    });
 
     return( 
         <>
@@ -42,10 +52,13 @@ const FavoritesScreen:React.FC = () => {
                             <h2 className="favorite-header">Your Favorite City Selections!</h2>
                         </div>
                         {!showMessage ? <div className="locationsWrapper">
-                            {favoritesLocation.map((item, index) => (
-                                <div className="locations" key={index} onClick={() => goBackToSearch(item.toLocaleString())}>
-                                    <h1 className="location-header"><b><i>{ item.toLocaleString() }</i></b></h1>
+                            {favoritesLocation.slice(1).map((item, index) => (
+                                <>
+                                <div className="locations" key={index}>
+                                    <h1 className="location-header" onClick={() => goBackToSearch(item.toLocaleString())}><b><i>{ item.toLocaleString() }</i></b></h1>
+                                    <button onClick={() => removeFromFavorite(index)} className="btn btn-danger remove-btn">Remove</button>
                                 </div>
+                                </>
                             ))}
                         </div> :
                         <>
@@ -65,6 +78,7 @@ const FavoritesScreen:React.FC = () => {
                         </div>
                         <div className="no-favorites">
                             <h2>You have currently no favorite locations!</h2>
+                             onClick={() => goBackToSearch(item.toLocaleString())}
                         </div>*/}
                     </div>
                 </div>

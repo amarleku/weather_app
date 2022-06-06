@@ -7,10 +7,16 @@
     color: #f2fbff;
 }
 
+.locationsWrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .locations {
     display: flex;
     justify-content: center;
-    margin-right: 100px;
+    width: 100%;
 }
 
 .location-header {
@@ -33,6 +39,12 @@
     justify-content: center;
     color: #ae5950;
 } 
+
+.remove-btn {
+    margin-top: 60px;
+    margin-left: 50px;
+    margin-bottom: 10px;
+}
 
 @media screen and (max-width: 500px) {
     .actions {
