@@ -4,7 +4,6 @@ import sunSVG  from '../assets/sun.svg';
 import moonSVG from '../assets/moon.svg';
 import rainSVG from '../assets/rain.svg';
 
-import Footer from "../screens/Footer";
 
 // Import Props Interface
 import { BackgroundProps } from "./SearchBar/constants";
@@ -44,7 +43,6 @@ const MainComponent:React.FC<BackgroundProps> = ({ conditions, hour }) => {
                 </div>
             </>
             }
-            <Footer />
         </>
     );
 }

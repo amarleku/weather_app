@@ -11,6 +11,7 @@ const FavoritesScreen:React.FC = () => {
         if(favoritesLocation.length == 1) {
             setShowMessage(true);
         }
+        console.log(favoritesLocation);
     });
 
     const [showMessage, setShowMessage] = useState<boolean>(false);
@@ -35,8 +36,8 @@ const FavoritesScreen:React.FC = () => {
         setLocation(favoritesLocation[index + 1]);
         contextHandler.removeLocation(location);
         
-        favoritesLocation.splice(index + 1, 1);
-        console.log(favoritesLocation);
+        // favoritesLocation.splice(index + 1, 1);
+        // console.log(favoritesLocation);
     }
 
 

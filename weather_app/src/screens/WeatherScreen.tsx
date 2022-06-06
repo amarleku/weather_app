@@ -45,7 +45,7 @@ const WeatherScreen: React.FC = () => {
         if(addedLocations.length != 1) {
             setFavoriteToggle(true);
         }
-        if(clickedLocation.length != 0){
+        if(clickedLocation.length != 0) {
             setLocation(clickedLocation);
             setShowFavoriteActions(true);
             axios.get(favoriteUrl).then((response: any) => {
@@ -98,8 +98,9 @@ const WeatherScreen: React.FC = () => {
         setShowFavorites(!showFavorites);
     }
 
-    const searchLocation = (event: { key: string; }) => {
+    const searchLocation = (event: any) => {
         if (event.key === ("Enter")) {
+            console.log(event.target.value);
             setFavoriteToggle(false);
             axios.get(url).then((response: any) => {
                 setShowFavoriteActions(true);
@@ -108,8 +109,10 @@ const WeatherScreen: React.FC = () => {
             }).catch((error) => {
                 if(location === '') {
                     setErrorMsg("Please enter a location on the search bar!");
+                    setShowFavoriteActions(false);
                 }else {
                     setErrorMsg(error.response.data);
+                    setShowFavoriteActions(false);
                 }
             });
         }

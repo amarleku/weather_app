@@ -20,7 +20,8 @@
 
 @media screen  and (max-width: 500px) {
   .footer {
-    position: relative;
-    margin-top: 1998px;
+    position: fixed;
+    bottom: 0;
+    top: 100 !important;
   }
 }
